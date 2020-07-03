@@ -1,0 +1,24 @@
+Thus far, we have been seeing a very particular type of Requests and Responses in our applications. 
+The requests were always a request, sent by the browser;  when we submitted a form, entered a URL or 
+clicked a link or button. And the redirect was always either a redirect or an html page.
+But, there are some operartions like deleting an item which happens behind the scene and no html page is 
+returned and only some exchange of data takes place between the client and the server.
+
+Current Work flow:-
+Rightnow, for deleting a product, we click on the delete button and with that, a request is sent to the node sever,
+containing the _id of the product. After that, with that _id, the node server reaches the database server and finds and deletes
+that product. And then, a new html page is returned to the client, containing all the updated products.
+
+Note:- There is nothing wrong with the current setup. But it would be a better user experience, if on clicking the delete button,
+the page don't reloads and we could see the updated products on the very same page.
+
+How it works:-
+In Async requests, client sends some data to the server in the form of JSON. Then, upon completing the operation, the server
+sends back some JSON to the client.
+So, here we can send some JSON to the server on clicking the delete button and then, after successfully deleting the data 
+on the database, the node severs will send some success msg as JSON, and then, we could delete the element from the DOM, on the
+client side. 
+
+The browser knows and sends only two types of requests to the server, i.e. GET and POST, on form submition, clicking link and buttons
+However, when we send request through client side Javascript, we have access to other http verbs too.
+ 

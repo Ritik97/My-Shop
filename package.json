@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Using Async requests and Payments in the current project",
   "main": "app.js",
+  "engines": {
+    "node": "13.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",

@@ -2,14 +2,18 @@ const path = require('path');
 
 const express = require('express');
 const app = express();
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const mongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
 const multer = require('multer');
+const helmet = require('helmet');
+const compression = require('compression');
 
-const MONGODB_URI = 'mongodb+srv://ritik:JvH5BXDdB5cgE6hF@cluster0-925sp.mongodb.net/shop?retryWrites=true&w=majority';
+const MONGODB_URI = 
+`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-925sp.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?retryWrites=true&w=majority`;
 
 const mongoConnect = require('./util/database').mongoConnect;
 
@@ -40,6 +44,8 @@ const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
 const errorController = require('./controllers/error');
+app.use(helmet());
+app.use(compression());
 
 const User = require('./models/user');
 
@@ -105,6 +111,6 @@ app.use(errorController.get404);
 
 mongoConnect(() => {
 
-    app.listen(3000);
+    app.listen(process.env.PORT || 3000);
     console.log('Connected');
 });

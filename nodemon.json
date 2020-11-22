@@ -1,0 +1,7 @@
+{
+    "env" : {
+        "MONGO_USER": "ritik",
+        "MONGO_PASSWORD": "JvH5BXDdB5cgE6hF",
+        "MONGO_DEFAULT_DATABASE": "shop"
+    }
+}
